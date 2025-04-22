@@ -1,0 +1,135 @@
+/* Layout */
+.max-w-600 {
+  max-width: 600px;
+}
+
+/* Tipografia */
+.display-5 {
+  font-size: 2.5rem;
+}
+
+/* Cards */
+.card {
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .display-5 {
+    font-size: 2rem;
+  }
+}
+
+.text-gradient-primary {
+  background: linear-gradient(to right, #4e54c8, #8f94fb);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.bg-primary-soft {
+  background-color: rgba(78, 84, 200, 0.1);
+}
+
+.icon-lg {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-xl {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hover-scale {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.hover-scale:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.hover-scale-sm {
+  transition: transform 0.2s ease;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+}
+
+.hover-scale-sm:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+}
+
+.tech-icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.tech-icon:hover {
+  transform: scale(1.1);
+}
+
+.tech-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #4e54c8, #8f94fb);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.transition-all {
+  transition: all 0.2s ease;
+}
+
+.hover-shadow-lg:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, .15) !important;
+}
+
+.hover-shadow-sm:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .1) !important;
+}
+
+.object-fit-contain {
+  object-fit: contain;
+}
+
+.hover-shadow {
+  transition: all 0.3s ease;
+}
+.hover-shadow:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+.transition-all {
+  transition: all 0.3s ease;
+}

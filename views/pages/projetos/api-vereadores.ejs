@@ -1,0 +1,110 @@
+<%- include('../../partials/header', { title: 'API de Vereadores | Meus Projetos' }) %>
+  <%- include('../../partials/nav') %>
+
+    <main class="container py-5 mt-5">
+      <article class="row g-5 align-items-start">
+        <!-- Coluna: Mídia e Tecnologias -->
+        <div class="col-lg-5">
+          <img src="/imagens/projetos/api-vereadores/demo.gif" alt="Demonstração do projeto"
+            class="img-fluid rounded shadow-sm mb-4">
+
+          <div class="d-flex flex-wrap gap-3 mb-4">
+            <!-- HTML -->
+            <div class="tech-icon" title="HTML">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
+            </div>
+            <!-- CSS -->
+            <div class="tech-icon" title="CSS">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
+            </div>
+            <!-- Figma -->
+            <div class="tech-icon" title="Figma">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
+            </div>
+            <!-- Python -->
+            <div class="tech-icon" title="Python">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+            </div>
+            <!-- GitHub -->
+            <div class="tech-icon" title="GitHub">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+            </div>
+            <!-- MySQL -->
+            <div class="tech-icon" title="MySQL">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+            </div>
+            <!-- Flask -->
+            <div class="tech-icon" title="Flask">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask">
+            </div>
+            <!-- Discord (Font Awesome) -->
+            <div class="tech-icon bg-white text-primary" title="Discord">
+              <i class="fab fa-discord fs-4"></i>
+            </div>
+            <!-- Jira (usando imagem SVG da Atlassian) -->
+            <div class="tech-icon" title="Jira">
+              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/jira.svg" alt="Jira"
+                style="filter: invert(19%) sepia(92%) saturate(2409%) hue-rotate(210deg) brightness(92%) contrast(98%);">
+            </div>
+            <!-- JavaScript -->
+            <div class="tech-icon" title="JavaScript">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                alt="JavaScript">
+            </div>
+            <!-- Tailwind -->
+            <div class="tech-icon" title="Tailwind CSS">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+                alt="Tailwind CSS">
+            </div>
+
+          </div>
+
+          <a href="https://github.com/matheuskarnas/API-1" class="btn btn-dark w-100" target="_blank">
+            <i class="fab fa-github me-2"></i>Repositório
+          </a>
+        </div>
+
+        <!-- Coluna: Conteúdo -->
+        <div class="col-lg-7">
+          <h1 class="display-5 fw-bold mb-3">API de Acompanhamento de Vereadores</h1>
+          <p class="lead mb-4">Oferecer aos eleitores dados claros e acessíveis que ajudem a tomar decisões informadas
+            nas eleições municipais de São José dos Campos.</p>
+
+          <p>A plataforma permite visualizar a atuação dos vereadores em aspectos como:</p>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-check-circle text-primary me-2"></i>Presença nas sessões e justificativas</li>
+            <li><i class="fas fa-check-circle text-primary me-2"></i>Proposições apresentadas: leis, moções e
+              requerimentos</li>
+            <li><i class="fas fa-check-circle text-primary me-2"></i>Projetos de Lei aprovados com links para o conteúdo
+            </li>
+            <li><i class="fas fa-check-circle text-primary me-2"></i>Posicionamento em votações importantes</li>
+            <li><i class="fas fa-check-circle text-primary me-2"></i>Participação em comissões permanentes e especiais
+            </li>
+          </ul>
+
+          <h3 class="h5 mt-4">Desafios</h3>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-angle-right text-primary me-2"></i>Estruturar e validar um backlog colaborativo</li>
+            <li><i class="fas fa-angle-right text-primary me-2"></i>Fazer scraping confiável de fontes públicas</li>
+            <li><i class="fas fa-angle-right text-primary me-2"></i>Apresentar informações técnicas de forma acessível
+              ao cidadão</li>
+          </ul>
+
+          <h3 class="h5 mt-4">Soluções</h3>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-check-circle text-success me-2"></i>Organização Scrum com Sprints e Backlogs por
+              prioridade</li>
+            <li><i class="fas fa-check-circle text-success me-2"></i>Uso de Python e BeautifulSoup para raspagem
+              estruturada</li>
+            <li><i class="fas fa-check-circle text-success me-2"></i>Aplicação responsiva usando Tailwind e gráficos
+            </li>
+          </ul>
+
+          <a href="/projetos" class="btn btn-outline-secondary mt-4">
+            <i class="fas fa-arrow-left me-2"></i>Voltar
+          </a>
+        </div>
+      </article>
+    </main>
+
+    <%- include('../../partials/footer') %>
