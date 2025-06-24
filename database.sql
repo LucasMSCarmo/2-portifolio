@@ -3,10 +3,6 @@ DROP DATABASE IF EXISTS portfolio_db;
 CREATE DATABASE IF NOT EXISTS portfolio_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE portfolio_db;
 
--- Limpando tabelas antigas para recriar a estrutura completa
-DROP TABLE IF EXISTS projetos_tecnologias, dados_pessoais, projetos, tecnologias, formacoes_academicas, soft_skills;
-
--- Tabela de Dados Pessoais (para a Home)
 CREATE TABLE dados_pessoais (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome_completo VARCHAR(100) NOT NULL,
@@ -19,7 +15,6 @@ CREATE TABLE dados_pessoais (
     linkedin_url VARCHAR(255)
 );
 
--- Tabela de Tecnologias (agora com categoria)
 CREATE TABLE tecnologias (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(50) NOT NULL UNIQUE,
@@ -27,7 +22,6 @@ CREATE TABLE tecnologias (
     categoria VARCHAR(50) NOT NULL -- 'Linguagem', 'Front-end', 'Ferramenta'
 );
 
--- Tabela de Projetos
 CREATE TABLE projetos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(100) NOT NULL,
@@ -38,7 +32,6 @@ CREATE TABLE projetos (
     link_repositorio VARCHAR(255)
 );
 
--- Tabela de Associação (Projetos <-> Tecnologias)
 CREATE TABLE projetos_tecnologias (
     projeto_id INT,
     tecnologia_id INT,
@@ -47,7 +40,6 @@ CREATE TABLE projetos_tecnologias (
     FOREIGN KEY (tecnologia_id) REFERENCES tecnologias(id) ON DELETE CASCADE
 );
 
--- NOVA: Tabela de Formação Acadêmica
 CREATE TABLE formacoes_academicas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     instituicao VARCHAR(100) NOT NULL,
@@ -57,7 +49,6 @@ CREATE TABLE formacoes_academicas (
     ordem INT DEFAULT 0
 );
 
--- NOVA: Tabela de Soft Skills
 CREATE TABLE soft_skills (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -66,11 +57,7 @@ CREATE TABLE soft_skills (
 );
 
 
--- =================================================================
--- INSERÇÃO DE TODOS OS DADOS
--- =================================================================
 
--- Inserir Dados Pessoais
 INSERT INTO dados_pessoais (id, nome_completo, titulo_header, imagem_avatar_url, titulo_principal, subtitulo, citacao, github_url, linkedin_url) VALUES
 (1, 'Lucas Martins', 'Estudante de Desenvolvimento de Software Multiplataforma', '/imagens/eu.jpeg', 'Estudante de Tecnologia', 'FATEC e ETEC São José dos Campos', 'Atualmente me dedicando aos estudos de Desenvolvimento de Software Multiplataforma na FATEC e Desenvolvimento de Sistemas na ETEC, buscando aprender na prática como criar soluções úteis e eficientes.', 'https://github.com/LucasMSCarmo', 'https://www.linkedin.com/in/lucas-martins-2104aa172');
 

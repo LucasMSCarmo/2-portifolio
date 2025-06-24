@@ -5,6 +5,7 @@ const pageRoutes = require('./routes/pages');
 const apiRoutes = require('./routes/api');
 
 const app = express();
+app.use(express.static(path.join(__dirname, 'public')));
 const port = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');

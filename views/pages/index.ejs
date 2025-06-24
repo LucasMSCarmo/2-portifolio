@@ -1,37 +1,33 @@
 <%- include('../partials/header', { 
-  title: 'Lucas Martins | Portfólio',
-  description: 'Estudante de Desenvolvimento de Software Multiplataforma'
+  title: dadosPessoais.nome_completo + ' | Portfólio',
+  description: dadosPessoais.titulo_header
 }) %>
+
 <%- include('../partials/nav') %>
 
 <main class="container my-5">
-  <!-- Hero Section -->
   <section class="hero-section text-center py-5 my-4">
     <div class="avatar-container mx-auto mb-4">
-      <img src="/imagens/eu.jpeg" 
-           alt="Lucas Martins" 
+      <img src="<%= dadosPessoais.imagem_avatar_url %>" 
+           alt="<%= dadosPessoais.nome_completo %>" 
            class="avatar rounded-circle shadow-lg"
            width="150"
            height="150"
            loading="lazy">
     </div>
     
-    <!-- Títulos -->
-    <h1 class="display-4 fw-bold mb-3">Lucas Martins</h1>
+    <h1 class="display-4 fw-bold mb-3"><%= dadosPessoais.nome_completo %></h1>
     <p class="lead text-muted mb-4">
-      Estudante de Tecnologia<br>
-      <small class="text-muted">FATEC e ETEC São José dos Campos</small>
+      <%= dadosPessoais.titulo_principal %><br>
+      <small class="text-muted"><%= dadosPessoais.subtitulo %></small>
     </p>
     
-    <!-- Citação -->
     <div class="quote-box bg-light p-4 rounded-3 mb-4 mx-auto" style="max-width: 600px;">
       <blockquote class="mb-0 fs-5">
-        "Atualmente me dedicando aos estudos de Desenvolvimento de Software Multiplataforma na FATEC e Desenvolvimento de Sistemas na ETEC, buscando aprender 
-        na prática como criar soluções úteis e eficientes."
+        "<%= dadosPessoais.citacao %>"
       </blockquote>
     </div>
 
-    <!-- Botões de Ação -->
     <div class="cta-buttons d-flex flex-wrap justify-content-center gap-3">
       <a href="/curriculo" class="btn btn-primary px-4 py-2">
         <i class="fas fa-file-alt me-2"></i>Ver Currículo
