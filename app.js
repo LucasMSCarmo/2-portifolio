@@ -1,60 +1,37 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const app = express();
+const pageRoutes = require('./routes/pages');
+const apiRoutes = require('./routes/api');
 
-// Configurações
+const app = express();
+const port = process.env.PORT || 3000;
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Rotas principais
-app.get('/', (req, res) => res.render('pages/index', { 
-  title: 'Lucas Martins | Portfólio'
-}));
+app.use('/', pageRoutes);
+app.use('/api', apiRoutes);
 
-app.get('/curriculo', (req, res) => res.render('pages/curriculo', {
-  title: 'Currículo | Lucas Martins'
-}));
-
-// Página de listagem de projetos
-app.get('/projetos', (req, res) => res.render('pages/projetos', {
-  title: 'Meus Projetos'
-}));
-
-// Páginas individuais dos projetos
-app.get('/projetos/api-vereadores', (req, res) => {
-  res.render('pages/projetos/api-vereadores', {
-    title: 'API de Vereadores | Meus Projetos'
-  });
+app.use((req, res, next) => {
+  const err = new Error('Página Não Encontrada');
+  err.status = 404;
+  next(err);
 });
 
-app.get('/projetos/api-helpnei', (req, res) => {
-  res.render('pages/projetos/api-helpnei', {
-    title: 'API Helpnei | Meus Projetos'
-  });
-});
-
-// Página 404
-app.use((req, res) => {
-  res.status(404).render('pages/erro', {
-    title: 'Página não encontrada',
-    mensagem: 'A página que você está procurando não existe.'
-  });
-});
-
-// Página 500
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).render('pages/erro', {
-    title: 'Erro no servidor',
-    mensagem: 'Ocorreu um erro inesperado no servidor.'
+  res.status(err.status || 500);
+  res.render('pages/erro', {
+    pageTitle: `Erro ${err.status || 500}`,
+    errorCode: err.status || 500,
+    errorMessage: err.message,
   });
 });
 
-// Inicia o servidor
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
-  console.log(`Ambiente: ${process.env.NODE_ENV || 'development'}`);
+app.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:${port}`);
 });

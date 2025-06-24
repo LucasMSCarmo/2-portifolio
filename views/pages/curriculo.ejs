@@ -1,229 +1,84 @@
 <%- include('../partials/header', { title: 'Currículo | Lucas Martins' }) %>
-  <%- include('../partials/nav') %>
+<%- include('../partials/nav') %>
 
-    <main class="container py-5 flex-grow-1 mt-5">
+<main class="container py-5 flex-grow-1 mt-5">
 
-      <!-- Seção Formação Acadêmica -->
-      <section class="mb-5">
-        <h2 class="display-5 fw-bold mb-4 text-gradient">Formação Acadêmica</h2>
-
-        <div class="row g-4">
+  <section class="mb-5">
+    <h2 class="display-5 fw-bold mb-4 text-gradient">Formação Acadêmica</h2>
+    <div class="row g-4">
+      <% if (formacoes && formacoes.length > 0) { %>
+        <% formacoes.forEach(formacao => { %>
           <div class="col-md-6">
             <div class="card border-0 h-100 shadow-sm hover-shadow-lg transition-all">
               <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-start mb-3">
                   <div>
-                    <h3 class="h4 fw-bold mb-1">FATEC SJC</h3>
-                    <p class="mb-1 text-muted">Graduação em Desenvolvimento de Software Multiplataforma</p>
-                    <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i>São José dos Campos/SP</small>
+                    <h3 class="h4 fw-bold mb-1"><%= formacao.instituicao %></h3>
+                    <p class="mb-1 text-muted"><%= formacao.curso %></p>
+                    <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i><%= formacao.localizacao %></small>
                   </div>
-                  <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill">2024 - 2027</span>
+                  <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill"><%= formacao.periodo %></span>
                 </div>
               </div>
             </div>
           </div>
+        <% }); %>
+      <% } %>
+    </div>
+  </section>
 
-          <div class="col-md-6">
-            <div class="card border-0 h-100 shadow-sm hover-shadow-lg transition-all">
-              <div class="card-body p-4">
-                <div class="d-flex justify-content-between align-items-start mb-3">
-                  <div>
-                    <h3 class="h4 fw-bold mb-1">ETEC SJC</h3>
-                    <p class="mb-1 text-muted">Técnico em Desenvolvimento de Sistemas</p>
-                    <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i>São José dos Campos/SP</small>
-                  </div>
-                  <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill">2024 - 2025</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Seção Competências Técnicas -->
-      <section class="mb-5">
-        <h2 class="display-5 fw-bold mb-4 text-gradient">Competências Técnicas</h2>
-
-        <div class="row g-4">
-          <!-- Linguagens -->
+  <section class="mb-5">
+    <h2 class="display-5 fw-bold mb-4 text-gradient">Competências Técnicas</h2>
+    <div class="row g-4">
+      <% const categorias = ['Linguagem', 'Front-end', 'Ferramenta']; %>
+      <% const iconesCategoria = { 'Linguagem': 'fa-code', 'Front-end': 'fa-paint-brush', 'Ferramenta': 'fa-tools' }; %>
+      
+      <% categorias.forEach(categoria => { %>
+        <% if (tecnologiasAgrupadas[categoria] && tecnologiasAgrupadas[categoria].length > 0) { %>
           <div class="col-md-4">
             <div class="card h-100 border-0 shadow-sm">
               <div class="card-header bg-transparent border-0 pb-0">
                 <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 d-inline-flex">
-                  <i class="fas fa-code fs-4"></i>
+                  <i class="fas <%= iconesCategoria[categoria] || 'fa-star' %> fs-4"></i>
                 </div>
-                <h3 class="h4">Linguagens</h3>
+                <h3 class="h4"><%= categoria %></h3>
               </div>
               <div class="card-body pt-0">
                 <div class="d-flex flex-wrap gap-3">
-                  <!-- Python -->
-                  <div class="bg-white rounded-3 p-2 shadow-sm" style="width: 50px; height: 50px;" title="Python">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-                      class="w-100 h-100 object-fit-contain" alt="Python">
-                  </div>
-                  <!-- JavaScript -->
-                  <div class="bg-white rounded-3 p-2 shadow-sm" style="width: 50px; height: 50px;" title="JavaScript">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                      class="w-100 h-100 object-fit-contain" alt="JavaScript">
-                  </div>
-                  <!-- Java -->
-                  <div class="bg-white rounded-3 p-2 shadow-sm" style="width: 50px; height: 50px;" title="Java">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
-                      class="w-100 h-100 object-fit-contain" alt="Java">
-                  </div>
-                  <!-- TypeScript -->
-                  <div class="bg-white rounded-3 p-2 shadow-sm" style="width: 50px; height: 50px;" title="TypeScript">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
-                      class="w-100 h-100 object-fit-contain" alt="TypeScript">
-                  </div>
+                  <% tecnologiasAgrupadas[categoria].forEach(tech => { %>
+                    <div class="bg-white rounded-3 p-2 shadow-sm" style="width: 50px; height: 50px;" title="<%= tech.nome %>">
+                      <img src="<%= tech.icone_url %>" class="w-100 h-100 object-fit-contain" alt="<%= tech.nome %>">
+                    </div>
+                  <% }); %>
                 </div>
               </div>
             </div>
           </div>
+        <% } %>
+      <% }); %>
+    </div>
+  </section>
 
-          <!-- Front-end -->
-          <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-header bg-transparent border-0 pb-0">
-                <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 d-inline-flex">
-                  <i class="fas fa-paint-brush fs-4"></i>
+  <section>
+    <h2 class="display-5 fw-bold mb-4 text-gradient">Soft Skills</h2>
+    <div class="row g-4">
+      <% if (softSkills && softSkills.length > 0) { %>
+        <% softSkills.forEach(skill => { %>
+          <div class="col-lg-4 col-md-6">
+            <div class="card border-0 h-100 shadow-sm hover-shadow-sm transition-all">
+              <div class="card-body text-center p-4">
+                <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 mx-auto d-inline-flex">
+                  <i class="fas <%= skill.icone_classe %> fs-4"></i>
                 </div>
-                <h3 class="h4">Front-end</h3>
-              </div>
-              <div class="card-body pt-0">
-                <div class="d-flex flex-wrap gap-3">
-                  <!-- HTML -->
-                  <div class="bg-white rounded-3 p-2 shadow-sm" style="width: 50px; height: 50px;" title="HTML5">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-                      class="w-100 h-100 object-fit-contain" alt="HTML5">
-                  </div>
-                  <!-- CSS -->
-                  <div class="bg-white rounded-3 p-2 shadow-sm" style="width: 50px; height: 50px;" title="CSS3">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
-                      class="w-100 h-100 object-fit-contain" alt="CSS3">
-                  </div>
-                  <!-- React -->
-                  <div class="bg-white rounded-3 p-2 shadow-sm" style="width: 50px; height: 50px;" title="React">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-                      class="w-100 h-100 object-fit-contain" alt="React">
-                  </div>
-                  <!-- Bootstrap -->
-                  <div class="bg-white rounded-3 p-2 shadow-sm" style="width: 50px; height: 50px;" title="Bootstrap">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg"
-                      class="w-100 h-100 object-fit-contain" alt="Bootstrap">
-                  </div>
-                  <!-- Tailwind -->
-                  <div class="bg-white rounded-3 p-2 shadow-sm" style="width: 50px; height: 50px;" title="Tailwind CSS">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
-                      class="w-100 h-100 object-fit-contain" alt="Tailwind CSS">
-                  </div>
-                </div>
+                <h3 class="h5 fw-bold mb-2"><%= skill.nome %></h3>
+                <p class="text-muted mb-0"><%= skill.descricao %></p>
               </div>
             </div>
           </div>
+        <% }); %>
+      <% } %>
+    </div>
+  </section>
+</main>
 
-          <!-- Ferramentas -->
-          <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-header bg-transparent border-0 pb-0">
-                <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 d-inline-flex">
-                  <i class="fas fa-tools fs-4"></i>
-                </div>
-                <h3 class="h4">Ferramentas</h3>
-              </div>
-              <div class="card-body pt-0">
-                <div class="d-flex flex-wrap gap-3">
-                  <!-- GitHub -->
-                  <div class="bg-white rounded-3 p-2 shadow-sm" style="width: 50px; height: 50px;" title="GitHub">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-                      class="w-100 h-100 object-fit-contain" alt="GitHub">
-                  </div>
-                  <!-- Docker -->
-                  <div class="bg-white rounded-3 p-2 shadow-sm" style="width: 50px; height: 50px;" title="Docker">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
-                      class="w-100 h-100 object-fit-contain" alt="Docker">
-                  </div>
-                  <!-- VS Code -->
-                  <div class="bg-white rounded-3 p-2 shadow-sm" style="width: 50px; height: 50px;" title="VS Code">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"
-                      class="w-100 h-100 object-fit-contain" alt="VS Code">
-                  </div>
-                  <!-- Vite -->
-                  <div class="bg-white rounded-3 p-2 shadow-sm" style="width: 50px; height: 50px;" title="Vite">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vite/vite-original.svg"
-                      class="w-100 h-100 object-fit-contain" alt="Vite">
-                  </div>
-                  <!-- Supabase -->
-                  <div class="bg-white rounded-3 p-2 shadow-sm" style="width: 50px; height: 50px;" title="Supabase">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg"
-                      class="w-100 h-100 object-fit-contain" alt="Supabase">
-                  </div>
-                  <!-- Flask -->
-                  <div class="bg-white rounded-3 p-2 shadow-sm" style="width: 50px; height: 50px;" title="Flask">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg"
-                      class="w-100 h-100 object-fit-contain" alt="Flask">
-                  </div>
-                  <!-- MySQL -->
-                  <div class="bg-white rounded-3 p-2 shadow-sm" style="width: 50px; height: 50px;" title="MySQL">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
-                      class="w-100 h-100 object-fit-contain" alt="MySQL">
-                  </div>
-                  <!-- Figma -->
-                  <div class="bg-white rounded-3 p-2 shadow-sm" style="width: 50px; height: 50px;" title="Figma">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"
-                      class="w-100 h-100 object-fit-contain" alt="Figma">
-                  </div>
-                  <!-- Discord -->
-                  <div
-                    class="bg-white rounded-3 p-2 shadow-sm text-center d-flex align-items-center justify-content-center"
-                    style="width: 50px; height: 50px;" title="Discord">
-                    <i class="fab fa-discord fs-4 text-primary"></i>
-                  </div>
-                  <!-- Jira -->
-                  <div
-                    class="bg-white rounded-3 p-2 shadow-sm text-center d-flex align-items-center justify-content-center"
-                    style="width: 50px; height: 50px;" title="Jira">
-                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/jira.svg"
-                      class="w-100 h-100 object-fit-contain" alt="Jira"
-                      style="filter: invert(19%) sepia(92%) saturate(2409%) hue-rotate(210deg) brightness(92%) contrast(98%);">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Seção Soft Skills -->
-      <section>
-        <h2 class="display-5 fw-bold mb-4 text-gradient">Soft Skills</h2>
-        <div class="row g-4">
-          <% [ { name: 'Trabalho em Equipe' , icon: 'fa-users' , desc: 'Colaboração eficaz em projetos grupais' }, {
-            name: 'Comunicação' , icon: 'fa-comments' , desc: 'Clareza na expressão de ideias técnicas' }, {
-            name: 'Gestão de Tempo' , icon: 'fa-clock' , desc: 'Organização de prazos e prioridades' }, {
-            name: 'Resolução de Problemas' , icon: 'fa-lightbulb' , desc: 'Abordagem lógica para desafios complexos' },
-            { name: 'Adaptabilidade' , icon: 'fa-random' , desc: 'Flexibilidade para novas tecnologias' }, {
-            name: 'Pensamento Crítico' , icon: 'fa-brain' , desc: 'Análise detalhada antes de decisões' }
-            ].forEach(skill=> { %>
-            <div class="col-lg-4 col-md-6">
-              <div class="card border-0 h-100 shadow-sm hover-shadow-sm transition-all">
-                <div class="card-body text-center p-4">
-                  <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 mx-auto d-inline-flex">
-                    <i class="fas <%= skill.icon %> fs-4"></i>
-                  </div>
-                  <h3 class="h5 fw-bold mb-2">
-                    <%= skill.name %>
-                  </h3>
-                  <p class="text-muted mb-0">
-                    <%= skill.desc %>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <% }); %>
-        </div>
-      </section>
-    </main>
-
-    <%- include('../partials/footer') %>
+<%- include('../partials/footer') %>

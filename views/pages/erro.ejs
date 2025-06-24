@@ -1,0 +1,15 @@
+<%- include('../partials/header', { pageTitle: pageTitle }) %>
+<%- include('../partials/nav') %>
+
+<main class="container py-5 text-center flex-grow-1 d-flex justify-content-center align-items-center">
+    <div class="row">
+        <div class="col">
+            <h1 class="display-1 fw-bold text-primary"><%= errorCode %></h1>
+            <h2 class="display-4"><%= pageTitle %></h2>
+            <p class="lead text-muted mt-3"><%= errorMessage %></p>
+            <a href="/" class="btn btn-primary mt-4">Voltar para a Página Inicial</a>
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer') %>

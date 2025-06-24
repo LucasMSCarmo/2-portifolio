@@ -1,58 +1,28 @@
-<%- include('../partials/header', { title: 'Meus Projetos' }) %>
-  <%- include('../partials/nav') %>
+<%- include('../partials/header', { pageTitle: pageTitle }) %>
+<%- include('../partials/nav') %>
 
-    <main class="container py-5 flex-grow-1">
-      <h1 class="display-5 fw-bold mb-5 mt-5 text-center">Meus Projetos</h1>
-
-      <div class="row g-4">
-        <!-- Projeto API de Vereadores -->
+<main class="container py-5 flex-grow-1">
+  <h1 class="display-5 fw-bold mb-5 mt-5 text-center">Meus Projetos</h1>
+  <div class="row g-4">
+    <% if (projetos && projetos.length > 0) { %>
+      <% projetos.forEach(projeto => { %>
         <div class="col-md-6 col-lg-4">
           <div class="card h-100 shadow-sm border-0 hover-shadow transition-all">
+            <img src="<%= projeto.imagem_url %>" class="card-img-top" alt="Imagem do projeto <%= projeto.titulo %>" style="height: 200px; object-fit: cover;">
             <div class="card-body d-flex flex-column">
-              <div class="d-flex align-items-center mb-3">
-                <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 me-3">
-                  <i class="fas fa-vote-yea fs-4"></i>
-                </div>
-                <h3 class="h5 mb-0">API de Vereadores</h3>
-              </div>
-              <p class="text-muted flex-grow-1">Sistema de acompanhamento legislativo com dados oficiais para auxiliar
-                na escolha de vereadores para a eleição de SJC de 2024.</p>
-              <div class="d-flex flex-wrap gap-2 mb-3">
-                <span class="badge bg-light text-dark border">Python</span>
-                <span class="badge bg-light text-dark border">Flask</span>
-                <span class="badge bg-light text-dark border">MySQL</span>
-              </div>
-              <a href="/projetos/api-vereadores" class="btn btn-sm btn-primary align-self-start mt-auto">
+              <h3 class="h5 mb-2"><%= projeto.titulo %></h3>
+              <p class="text-muted flex-grow-1"><%= projeto.descricao_curta %></p>
+              <a href="/projetos/<%= projeto.slug %>" class="btn btn-sm btn-primary align-self-start mt-auto">
                 Ver Detalhes <i class="fas fa-arrow-right ms-2"></i>
               </a>
             </div>
           </div>
         </div>
+      <% }); %>
+    <% } else { %>
+      <p class="text-center">Nenhum projeto encontrado.</p>
+    <% } %>
+  </div>
+</main>
 
-        <!-- Projeto API Helpnei -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card h-100 shadow-sm border-0 hover-shadow transition-all">
-            <div class="card-body d-flex flex-column">
-              <div class="d-flex align-items-center mb-3">
-                <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 me-3">
-                  <i class="fas fa-bullhorn fs-4"></i> <!-- Ícone atualizado -->
-                </div>
-                <h3 class="h5 mb-0">API Helpnei</h3>
-              </div>
-              <p class="text-muted flex-grow-1">Plataforma digital para fins de marketing dos patrocinadores da empresa
-                Helpnei.</p>
-              <div class="d-flex flex-wrap gap-2 mb-3">
-                <span class="badge bg-light text-dark border">Node.js</span>
-                <span class="badge bg-light text-dark border">Express</span>
-                <span class="badge bg-light text-dark border">MongoDB</span>
-              </div>
-              <a href="/projetos/api-helpnei" class="btn btn-sm btn-primary align-self-start mt-auto">
-                Ver Detalhes <i class="fas fa-arrow-right ms-2"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <%- include('../partials/footer') %>
+<%- include('../partials/footer') %>
